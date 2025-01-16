@@ -1,0 +1,19 @@
+
+.form-group input{
+    background-color: black;
+    border: solid white 1px;
+    padding-top: 10px;
+    margin-bottom: 25px;
+}
+
+.form-group input {
+    font-size:small;
+    padding: 6px;
+}
+
+.form button:hover{
+    background-color: gray;
+    color: white;
+}
+
+
