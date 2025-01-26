@@ -3,66 +3,68 @@ import Car from "./Car";
 
 function Rent() {
     const [cars, setCars] = useState([]);
-    const [sortOption, setSortOption] = useState("Default");
+    const [filteredCars, setFilteredCars] = useState([]);
+    const [selectedType, setSelectedType] = useState("All");
 
     useEffect(() => {
         fetch("http://127.0.0.1:5000/cars")
             .then((resp) => resp.json())
             .then((data) => {
                 setCars(data);
+                setFilteredCars(data);
             })
             .catch((error) => {
                 console.error("Error fetching cars:", error);
             });
     }, []);
+    
 
-    const handleSort = (event) => {
-        const option = event.target.value;
-        setSortOption(option);
-        let sortedCars = [...cars];
+    const handleFilter = (event) => {
+        const type = event.target.value;
+        setSelectedType(type);
 
-        switch (option) {
-            case "Title":
-                sortedCars.sort((a, b) => a.name.localeCompare(b.name));
-                break;
-            case "Price-low":
-                sortedCars.sort((a, b) => a.price - b.price);
-                break;
-            case "Price-high":
-                sortedCars.sort((a, b) => b.price - a.price);
-                break;
-            default:
-                break;
+        if (type === "All") {
+            setFilteredCars(cars);
+        } else {
+            const filtered = cars.filter((car) => car.type === type);
+            setFilteredCars(filtered);
         }
-
-        setCars(sortedCars);
     };
 
+
+    
+
     return (
-        <div className="h-auto w-full pt-10 pl-16 bg-gray-100">
-            <div className="flex flex-row mb-20">
-                <p>Filter by type:</p>
-                <select onChange={handleSort}>
-                    <option value="Default">All</option>
-                    <option value="Title">Sedan</option>
-                    <option value="Price-low">SUVs</option>
-                    <option value="Price-high">Pick-Up</option>
-                    <option value="">Hatchback</option>
+        <div className="bg-gray-300 h-auto w-full pt-8 pl-16 bg-gray-100 ">
+            <div className="flex flex-row mb-8">
+                <p className="poppins-medium  text-gray-600">Filter by type:</p>
+                <select onChange={handleFilter} value={selectedType} className="ml-6 border border-black poppins-medium text-sm">
+                    <option value="All">All</option>
+                    <option value="Sedan">Sedan</option>
+                    <option value="SUV">SUVs</option>
+                    <option value="Pickup">Pick-Up</option>
+                    <option value="Hatchback">Hatchback</option>
                 </select>
             </div>
 
             <div className="flex flex-wrap ">
-                {cars.map((car) => (
+                {filteredCars.map((car) => (
                     <Car
                         key={car.id}
+                        id={car.id}
                         name={car.name}
                         price={car.price}
                         image_url={car.image_url}
+                        seats={car.seats}
+                        transmission={car.transmission}
+                        fuel={car.fuel_type}
                     />
                 ))}
             </div>
+
         </div>
     );
 }
 
 export default Rent;
+
