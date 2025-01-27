@@ -10,7 +10,7 @@ function Rentals(){
     const userId = sessionStorage.getItem("userId")
 
     useEffect(() => {
-        fetch(`http://127.0.0.1:5000/rents/user/${userId}`)
+        fetch(`https://w4rserver.onrender.com/user/${userId}`)
             .then((resp) => resp.json())
             .then((data) => {
                 setRentals(data);
@@ -23,7 +23,7 @@ function Rentals(){
 
 
     const handleReturnCar = (rentId) => {
-        fetch(`http://127.0.0.1:5000/rents/${rentId}`, {
+        fetch(`https://w4rserver.onrender.com/rents/${rentId}`, {
             method: 'DELETE',
         })
         .then((response) => {

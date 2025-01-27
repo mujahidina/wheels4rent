@@ -34,7 +34,7 @@ function Login() {
           })
         };
     
-        fetch('http://127.0.0.1:5000/user/login', opts)
+        fetch('https://w4rserver.onrender.com/user/login', opts)
           .then((response) => {
             if (response.ok) {
               console.log(response);

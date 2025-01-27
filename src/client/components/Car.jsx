@@ -33,7 +33,7 @@ function Car({ id, name, price, image_url, seats, fuel, transmission }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch("http://127.0.0.1:5000/rents", {
+            const response = await fetch("https://w4rserver.onrender.com/rents", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

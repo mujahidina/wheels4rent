@@ -20,7 +20,7 @@ function MyCars() {
   
 
   useEffect(() => {
-    fetch(`http://127.0.0.1:5000/cars/user/${userId}`)
+    fetch(`https://w4rserver.onrender.com/user/${userId}`)
       .then((response) => response.json())
       .then((data) => setCars(data))
       .catch((err) => console.error("Error fetching my cars:", err));
@@ -31,7 +31,7 @@ function MyCars() {
 
 
   const handleCarUpload = (newCar) => {
-    fetch(`http://127.0.0.1:5000/cars`, {
+    fetch(`https://w4rserver.onrender.com/cars`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -56,7 +56,7 @@ function MyCars() {
 
   
   const handleCarEdit = (updatedCar) => {
-    fetch(`http://127.0.0.1:5000/cars/${updatedCar.id}`, {
+    fetch(`https://w4rserver.onrender.com/cars/${updatedCar.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -84,7 +84,7 @@ function MyCars() {
 
   
   const handleCarDelete = (id) => {
-    fetch(`http://127.0.0.1:5000/cars/${id}`, {
+    fetch(`https://w4rserver.onrender.com/cars/${id}`, {
       method: "DELETE",
     })
       .then((response) => {

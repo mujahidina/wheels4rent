@@ -7,7 +7,7 @@ function Rent() {
     const [selectedType, setSelectedType] = useState("All");
 
     useEffect(() => {
-        fetch("http://127.0.0.1:5000/cars")
+        fetch("https://w4rserver.onrender.com/cars")
             .then((resp) => resp.json())
             .then((data) => {
                 setCars(data);
@@ -35,7 +35,7 @@ function Rent() {
     
 
     return (
-        <div className="bg-gray-300 h-auto w-full pt-8 pl-16 bg-gray-100 ">
+        <div className="bg-gray-300 h-auto w-full pt-8 pl-16  ">
             <div className="flex flex-row mb-8">
                 <p className="poppins-medium  text-gray-600">Filter by type:</p>
                 <select onChange={handleFilter} value={selectedType} className="ml-6 border border-black poppins-medium text-sm">

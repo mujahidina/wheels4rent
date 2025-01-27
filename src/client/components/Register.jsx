@@ -36,7 +36,7 @@ function Register() {
           })
         };
     
-        fetch('http://127.0.0.1:5000/user/register', opts)
+        fetch('https://w4rserver.onrender.com/user/register', opts)
           .then((response) => {
             if (response.ok) {
               return response.json();
